@@ -20,6 +20,6 @@ public class Duplicate {
     private Integer id;
     private LocalDateTime markedAt;
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(referencedColumnName = "id")
-    private Integer bugId;
+    @JoinColumn(name = "bugId", referencedColumnName = "id")
+    private Bug bug;
 }
