@@ -15,12 +15,12 @@ class QuestionSupportServiceTest {
     private QuestionSupportService questionSupportService;
 
     @Test
-    @DisplayName("Should Check Bug Validation")
-    void shouldCheckBugValidation() {
+    @DisplayName("Should Check Bug Validation if Bug message is not empty")
+    void shouldCheckBugValidationIfBugMessageIsNotEmpty() {
         Bug testBug = Bug.builder()
                 .bugMessage("Hello I am a test bug")
                 .build();
         boolean actual = questionSupportService.checkBugValidation(testBug);
-        assertEquals(false, actual);
+        assertEquals(true, actual);
     }
 }
