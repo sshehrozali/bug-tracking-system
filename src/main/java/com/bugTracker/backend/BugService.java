@@ -22,7 +22,7 @@ public class BugService {
 
         Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
         if (isDuplicate) {
-            log.warn("Bug duplicate: Matched");
+            log.warn("Bug duplicate: Marked");
             return false;
         }
 
