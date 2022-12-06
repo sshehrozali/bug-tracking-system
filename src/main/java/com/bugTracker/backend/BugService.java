@@ -17,7 +17,7 @@ public class BugService {
         Boolean validate = questionSupportService.checkBugValidation(bug);
         if (validate) {
             log.warn("Bug validation: Passed");
-            Boolean isDuplicate = isBugDuplicate(bug);
+            Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
             if (!isDuplicate) {
                 log.info("Bug duplicate: Not Found");
                 return true;
