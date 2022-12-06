@@ -1,2 +1,7 @@
-package com.bugTracker.backend;public class NewBugRequest {
+package com.bugTracker.backend;
+
+public record NewBugRequest(
+        String msg,
+        String details
+) {
 }
