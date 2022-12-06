@@ -14,4 +14,5 @@ public class Bug {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
     private String bugMessage;
+    private String bugDetails;
 }
