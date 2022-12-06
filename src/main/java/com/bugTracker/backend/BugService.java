@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 public class BugService {
-    private QuestionSupport questionSupport;
+    private QuestionSupportService questionSupportService;
     private BugRepository bugRepository;
 
     public Boolean newBugReport(Bug bug) {
-        Boolean validate = questionSupport.checkBugValidation(bug);
+        Boolean validate = questionSupportService.checkBugValidation(bug);
         if (validate) {
             log.warn("Bug validation: Passed");
             Boolean isDuplicate = isBugDuplicate(bug);
