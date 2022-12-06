@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 public class DuplicateService {
+    private BugRepository bugRepository;
     private DuplicateRepository duplicateRepository;
     public Boolean isBugDuplicate(Bug bug) {
         return false;
