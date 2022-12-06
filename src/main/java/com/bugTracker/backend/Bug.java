@@ -12,7 +12,8 @@ import lombok.*;
 public class Bug {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @OneToOne(mappedBy = "bugId")
-    private Integer bugId;
+    private Integer id;
     private String bugMessage;
+    @OneToOne
+    private Duplicate duplicate;
 }
