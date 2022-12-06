@@ -13,7 +13,16 @@ public class BugService {
     private QuestionSupportService questionSupportService;
     private DuplicateService duplicateService;
 
-    public Boolean newBugReport(Bug bug) {
+    public Boolean newBugReport(NewBugRequest newBugRequest) {
+        if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
+            log.warn("Bug request is invalid");
+            return false;
+        }
+
+        Bug bug = Bug.builder()
+                .bugMessage(newBugRequest.msg())
+                .build();
+
         Boolean validate = questionSupportService.checkBugValidation(bug);
         if (!validate) {
             log.warn("Bug validation: Failed");
