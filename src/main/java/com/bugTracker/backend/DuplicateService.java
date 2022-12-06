@@ -11,6 +11,8 @@ public class DuplicateService {
     private BugRepository bugRepository;
     private DuplicateRepository duplicateRepository;
     public Boolean isBugDuplicate(Bug bug) {
+        boolean bugExists = bugRepository.existsById(bug.getId());
+        System.out.println(bugExists);
         return false;
     }
 }
