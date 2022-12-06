@@ -12,7 +12,10 @@ public class DuplicateService {
     private DuplicateRepository duplicateRepository;
     public Boolean isBugDuplicate(Bug bug) {
         boolean bugExists = bugRepository.existsById(bug.getId());
-        System.out.println(bugExists);
+        if (bugExists) {
+            return true;    // Bug already found
+        }
+
         return false;
     }
 }
