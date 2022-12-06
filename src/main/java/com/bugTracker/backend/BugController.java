@@ -15,9 +15,9 @@ public class BugController {
     private BugService bugService;
 
     @PostMapping("/new/bug")
-    public String newBug(@RequestBody Bug bug) {
+    public String newBug(@RequestBody NewBugRequest newBugRequest) {
         log.warn("New incoming Bug request...");
-        bugService.newBugReport(bug);
+        bugService.newBugReport(newBugRequest);
         return "Bug reported.";
     }
 }
