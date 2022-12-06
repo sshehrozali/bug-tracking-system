@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Slf4j
 public class BugService {
-    private QuestionSupportService questionSupportService;
+
     private BugRepository bugRepository;
+    private QuestionSupportService questionSupportService;
+    private DuplicateService duplicateService;
 
     public Boolean newBugReport(Bug bug) {
         Boolean validate = questionSupportService.checkBugValidation(bug);
@@ -25,10 +27,6 @@ public class BugService {
         } else {
             log.warn("Bug validation: Failed");
         }
-        return false;
-    }
-
-    public Boolean isBugDuplicate(Bug bug) {
         return false;
     }
 }
