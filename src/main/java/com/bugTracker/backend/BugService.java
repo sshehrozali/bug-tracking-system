@@ -15,18 +15,17 @@ public class BugService {
 
     public Boolean newBugReport(Bug bug) {
         Boolean validate = questionSupportService.checkBugValidation(bug);
-        if (validate) {
-            log.warn("Bug validation: Passed");
-            Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
-            if (!isDuplicate) {
-                log.info("Bug duplicate: Not Found");
-                return true;
-            } else {
-                log.warn("Bug duplicate: Found");
-            }
-        } else {
+        if (!validate) {
             log.warn("Bug validation: Failed");
+            return false;
         }
-        return false;
+
+        Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
+        if (isDuplicate) {
+            log.warn("Bug duplicate: Matched");
+            return false;
+        }
+
+        return true;
     }
 }
