@@ -1,2 +1,7 @@
-package com.bugTracker.backend;public interface DuplicateRepository {
+package com.bugTracker.backend;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DuplicateRepository {
 }
