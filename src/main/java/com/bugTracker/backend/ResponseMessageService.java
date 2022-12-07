@@ -15,6 +15,10 @@ public class ResponseMessageService {
         messages.put(MessageCode.INVALID_BUG_MESSAGE, "Not a valid Bug.");
         messages.put(MessageCode.DETAILS_NOT_PROVIDED, "Bug details not provided. Please provide to continue.");
 
+        if (!messages.containsKey(code)) {
+            return null;
+        }
+
         return messages.get(code);
     }
 }
