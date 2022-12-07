@@ -34,5 +34,9 @@ class BugServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    void shouldReturnInvalidBugMsg()
+    @Test
+    @DisplayName("Should return invalid bug message")
+    void shouldReturnInvalidBugMsg() {
+
+    }
 }
