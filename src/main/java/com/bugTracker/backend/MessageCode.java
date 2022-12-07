@@ -1,6 +1,6 @@
 package com.bugTracker.backend;
 
-public enum ResponseMessages {
+public enum MessageCode {
     INVALID_BUG_MESSAGE,
     DUPLICATE_BUG_MESSAGE,
     EMPTY_BUG_MESSAGE
