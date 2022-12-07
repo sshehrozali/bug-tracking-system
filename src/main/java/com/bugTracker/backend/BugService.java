@@ -14,12 +14,13 @@ public class BugService {
     private BugRepository bugRepository;
     private QuestionSupportService questionSupportService;
     private DuplicateService duplicateService;
+    private ResponseMessageService responseMessageService;
 
     public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
         if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
-            log.warn("Bug request is invalid");
+            log.warn("Bug: Error");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
-                    .msg("Invalid Bug request. Can't be empty.")
+                    .msg(responseMessageService.getMessage(MessageCode.EMPTY_BUG_MESSAGE))
                     .build();
             return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
@@ -32,7 +33,7 @@ public class BugService {
         if (!validate) {
             log.warn("Bug validation: Failed");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
-                    .msg("Not a valid Bug.")
+                    .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
                     .build();
             return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
@@ -41,14 +42,14 @@ public class BugService {
         if (isDuplicate) {
             log.warn("Bug duplicate: Marked");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
-                    .msg("Duplicate Bug found.")
+                    .msg(responseMessageService.getMessage(MessageCode.DUPLICATE_BUG_MESSAGE))
                     .build();
             return new ResponseEntity<>(customAPIResponse, HttpStatus.CONFLICT);
         }
 
         if (newBugRequest.details().isEmpty() || newBugRequest.details().isBlank()) {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
-                    .msg("Please provide details of the Bug.")
+                    .msg(responseMessageService.getMessage(MessageCode.DETAILS_NOT_PROVIDED))
                     .build();
             return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
