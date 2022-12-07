@@ -18,7 +18,7 @@ public class BugService {
 
     public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
         if (newBugRequest.msg().length() == 1) {
-            log.warn("Bug: Error");
+            log.warn("Bug: length equals to 1");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
                     .build();
