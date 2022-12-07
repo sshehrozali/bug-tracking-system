@@ -15,8 +15,26 @@ class ResponseMessageServiceTest {
     private ResponseMessageService underTest;
 
     @Test
-    @DisplayName("Should return error message when message code is not matched")
+    @DisplayName("Should return empty bug message")
     void shouldReturnEmptyBugMessage() {
-        assertThat(underTest.getMessage(MessageCode.ERROR)).isNull();
+        assertThat(underTest.getMessage(MessageCode.EMPTY_BUG_MESSAGE)).isNotBlank();
+    }
+
+    @Test
+    @DisplayName("Should return invalid bug message")
+    void shouldReturnInvalidBugMessage() {
+        assertThat(underTest.getMessage(MessageCode.INVALID_BUG_MESSAGE)).isNotBlank();
+    }
+
+    @Test
+    @DisplayName("Should return duplicate bug message")
+    void shouldReturnDuplicateBugMessage() {
+        assertThat(underTest.getMessage(MessageCode.DUPLICATE_BUG_MESSAGE)).isNotBlank();
+    }
+
+    @Test
+    @DisplayName("Should return bug details not provided message")
+    void shouldReturnDetailsNotProvidedBugMessage() {
+        assertThat(underTest.getMessage(MessageCode.DETAILS_NOT_PROVIDED)).isNotBlank();
     }
 }
