@@ -37,4 +37,14 @@ class ResponseMessageServiceTest {
     void shouldReturnDetailsNotProvidedBugMessage() {
         assertThat(underTest.getMessage(MessageCode.DETAILS_NOT_PROVIDED)).isNotBlank();
     }
+
+    @Test
+    @DisplayName("Should return null if message code doesn't match")
+    void shouldReturnNullWhenMessageCodeNotMatch() {
+        enum testEnum {
+            ERROR
+        }
+
+        assertThat(underTest.getMessage(testEnum.ERROR)).isNull();
+    }
 }
