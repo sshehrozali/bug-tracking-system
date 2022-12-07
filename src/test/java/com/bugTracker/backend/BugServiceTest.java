@@ -15,6 +15,6 @@ class BugServiceTest {
     @Test
     void shouldReturnBugMsgCantBeEmpty() {
         NewBugRequest newBugRequest = new NewBugRequest("", "");
-
+        CustomAPIResponse customAPIResponseExpected = new CustomAPIResponse("")
     }
 }
