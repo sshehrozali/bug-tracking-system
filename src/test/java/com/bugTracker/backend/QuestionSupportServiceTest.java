@@ -23,4 +23,14 @@ class QuestionSupportServiceTest {
         boolean actual = questionSupportService.checkBugValidation(testBug);
         assertEquals(true, actual);
     }
+
+    @Test
+    @DisplayName("Should Check Bug Validation if Bug message is empty")
+    void shouldCheckBugValidationIfBugMessageIsEmpty() {
+        Bug testBug = Bug.builder()
+                .bugMessage("")
+                .build();
+        boolean actual = questionSupportService.checkBugValidation(testBug);
+        assertEquals(false, actual);
+    }
 }
