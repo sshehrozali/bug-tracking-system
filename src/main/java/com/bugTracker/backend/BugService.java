@@ -2,6 +2,8 @@ package com.bugTracker.backend;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,10 +15,13 @@ public class BugService {
     private QuestionSupportService questionSupportService;
     private DuplicateService duplicateService;
 
-    public Boolean newBugReport(NewBugRequest newBugRequest) {
+    public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
         if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
             log.warn("Bug request is invalid");
-            return false;
+            CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
+                    .msg("Invalid Bug request. Can't be empty.")
+                    .build();
+            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
 
         Bug bug = Bug.builder()
@@ -26,15 +31,27 @@ public class BugService {
         Boolean validate = questionSupportService.checkBugValidation(bug);
         if (!validate) {
             log.warn("Bug validation: Failed");
-            return false;
+            CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
+                    .msg("Not a valid Bug.")
+                    .build();
+            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
 
         Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
         if (isDuplicate) {
             log.warn("Bug duplicate: Marked");
-            return false;
+            CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
+                    .msg("Duplicate Bug found.")
+                    .build();
+            return new ResponseEntity<>(customAPIResponse, HttpStatus.CONFLICT);
         }
 
+        if (newBugRequest.details().isEmpty() || newBugRequest.details().isBlank()) {
+            CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
+                    .msg("Please provide details of the Bug.")
+                    .build();
+            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+        }
         return true;
     }
 }
