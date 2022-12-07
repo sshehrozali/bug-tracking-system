@@ -18,6 +18,10 @@ class BugServiceTest {
     @InjectMocks
     private BugService underTest;
     @Mock
+    private QuestionSupportService questionSupportService;
+    @Mock
+    private DuplicateService duplicateService;
+    @Mock
     private ResponseMessageService responseMessageService;
 
     @Test
@@ -31,12 +35,21 @@ class BugServiceTest {
         );
         ResponseEntity<?> expected = new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
 
+        System.out.println(customAPIResponse.msg());
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
     @DisplayName("Should return invalid bug message")
     void shouldReturnInvalidBugMsg() {
+        NewBugRequest newBugRequest = new NewBugRequest("", "");
+        ResponseEntity<?> actual = underTest.newBugReport(newBugRequest);
+//
+//        CustomAPIResponse customAPIResponse = new CustomAPIResponse(
+//                responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE)
+//        );
+//        ResponseEntity<?> expected = new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
 
+        System.out.println(actual.getBody());
     }
 }
