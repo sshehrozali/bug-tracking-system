@@ -17,6 +17,14 @@ public class BugService {
     private ResponseMessageService responseMessageService;
 
     public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
+        if (newBugRequest.msg().length() == 1) {
+            log.warn("Bug: Error");
+            CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
+                    .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
+                    .build();
+            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+        }
+
         if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
             log.warn("Bug: Error");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
