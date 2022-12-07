@@ -10,11 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class BugServiceTest {
     @InjectMocks
-    private BugService bugService;
+    private BugService underTest;
 
     @Test
     void shouldReturnBugMsgCantBeEmpty() {
-        NewBugRequest newBugRequest = new NewBugRequest("", "");
-        CustomAPIResponse customAPIResponseExpected = new CustomAPIResponse("")
     }
 }
