@@ -1,4 +1,6 @@
 package com.bugTracker.backend;
 
-public class CustomAPIResponse {
+public record CustomAPIResponse(
+        String msg
+) {
 }
