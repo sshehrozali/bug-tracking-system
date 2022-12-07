@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
 public class ResponseMessageService {
     public String getMessage(Enum code) {
         HashMap<Enum, String> messages = new HashMap<>();
