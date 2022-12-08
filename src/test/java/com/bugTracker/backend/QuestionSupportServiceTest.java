@@ -40,6 +40,16 @@ class QuestionSupportServiceTest {
     @Test
     @DisplayName("Should return false if length of bug message is equals to 1")
     void shouldReturnFalseIfLengthOfBugMessageEqualsTo1() {
+        Bug testBug = Bug.builder()
+                .bugMessage("A")
+                .build();
+        boolean actual = questionSupportService.checkBugValidation(testBug);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    @DisplayName("Should return true if bug message is not empty or blank and length of bug is greater than 1")
+    void shouldReturnTrueIfBugIsNotEmptyOrBlankAndLengthOfBugIsGreaterThanOne() {
 
     }
 }
