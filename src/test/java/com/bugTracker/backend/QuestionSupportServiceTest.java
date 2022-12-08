@@ -18,8 +18,8 @@ class QuestionSupportServiceTest {
     }
 
     @Test
-    @DisplayName("Should Check Bug Validation if Bug message is not empty")
-    void shouldCheckBugValidationIfBugMessageIsNotEmpty() {
+    @DisplayName("Should return true if bug message is not empty")
+    void shouldReturnTrueIfBugMessageIsNotEmpty() {
         Bug testBug = Bug.builder()
                 .bugMessage("Hello I am a test bug")
                 .build();
