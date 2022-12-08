@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BugRepository extends JpaRepository<Bug, Integer> {
     @Query
-    boolean existsById(Integer id);
+    boolean existsByBugMessage(String bugMessage);
 }
