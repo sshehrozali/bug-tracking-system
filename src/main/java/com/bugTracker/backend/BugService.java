@@ -36,6 +36,7 @@ public class BugService {
 
         Bug bug = Bug.builder()
                 .bugMessage(newBugRequest.msg())
+                .bugDetails(newBugRequest.details())
                 .build();
 
         Boolean validate = questionSupportService.checkBugValidation(bug);
@@ -62,6 +63,9 @@ public class BugService {
                     .build();
             return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
+
+        bugRepository.save(bug);
+        log.info("Bug: Confirmed successfully");
 
         return new ResponseEntity<>("Bug reported.", HttpStatus.OK);
     }
