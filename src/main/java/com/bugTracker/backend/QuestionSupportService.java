@@ -8,6 +8,10 @@ public class QuestionSupportService {
         if (bug.getBugMessage().isBlank()) {
             return false;
         }
+
+        if (bug.getBugMessage().length() == 1) {
+            return false;
+        }
         return true;
     }
 }
