@@ -33,4 +33,10 @@ class QuestionSupportServiceTest {
         boolean actual = questionSupportService.checkBugValidation(testBug);
         assertEquals(false, actual);
     }
+
+    @Test
+    @DisplayName("Should return false if length of bug message is equals to 1")
+    void shouldReturnFalseForLengthOfBugMessageEquals1() {
+
+    }
 }
