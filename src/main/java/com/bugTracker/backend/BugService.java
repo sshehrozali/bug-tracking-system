@@ -62,6 +62,6 @@ public class BugService {
             return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
         }
 
-        return new ResponseEntity<>("Bug reorted.", HttpStatus.OK);
+        return new ResponseEntity<>("Bug reported.", HttpStatus.OK);
     }
 }
