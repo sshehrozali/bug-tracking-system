@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class BugService {
 
-    private BugRepository bugRepository;
-    private QuestionSupportService questionSupportService;
-    private DuplicateService duplicateService;
-    private ResponseMessageService responseMessageService;
+    private final BugRepository bugRepository;
+    private final QuestionSupportService questionSupportService;
+    private final DuplicateService duplicateService;
+    private final ResponseMessageService responseMessageService;
 
     public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
         if (newBugRequest.msg().length() == 1) {
