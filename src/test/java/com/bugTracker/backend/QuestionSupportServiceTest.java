@@ -48,8 +48,12 @@ class QuestionSupportServiceTest {
     }
 
     @Test
-    @DisplayName("Should return true if bug message is not empty or blank and length of bug is greater than 1")
+    @DisplayName("Should return true if bug message is not empty or blank and length of bug message is greater than 1")
     void shouldReturnTrueIfBugMessageIsNotEmptyOrBlankAndLengthOfBugMessageIsGreaterThanOne() {
-
+        Bug testBug = Bug.builder()
+                .bugMessage("String Regex Error")
+                .build();
+        boolean actual = questionSupportService.checkBugValidation(testBug);
+        assertEquals(true, actual);
     }
 }
