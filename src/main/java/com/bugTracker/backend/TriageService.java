@@ -1,2 +1,7 @@
-package com.bugTracker.backend;public class TriageService {
+package com.bugTracker.backend;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class TriageService {
 }
