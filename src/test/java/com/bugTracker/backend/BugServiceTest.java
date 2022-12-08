@@ -42,7 +42,7 @@ class BugServiceTest {
     @Test
     @DisplayName("Should return invalid bug message")
     void shouldReturnInvalidBugMsg() {
-        NewBugRequest newBugRequest = new NewBugRequest("", "");
+        NewBugRequest newBugRequest = new NewBugRequest("Aaaa", "");
         ResponseEntity<?> actual = underTest.newBugReport(newBugRequest);
 //
 //        CustomAPIResponse customAPIResponse = new CustomAPIResponse(
