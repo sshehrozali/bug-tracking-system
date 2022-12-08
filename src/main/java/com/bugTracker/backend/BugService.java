@@ -26,7 +26,7 @@ public class BugService {
         }
 
         if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
-            log.warn("Bug: Error");
+            log.warn("Bug: Empty");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.EMPTY_BUG_MESSAGE))
                     .build();
