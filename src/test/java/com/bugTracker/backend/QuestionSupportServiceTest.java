@@ -1,5 +1,6 @@
 package com.bugTracker.backend;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,10 +10,12 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.FactoryBasedNavigableListAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-@ExtendWith(MockitoExtension.class)
 class QuestionSupportServiceTest {
-    @InjectMocks
     private QuestionSupportService questionSupportService;
+    @BeforeEach
+    void setUp() {
+        questionSupportService = new QuestionSupportService();
+    }
 
     @Test
     @DisplayName("Should Check Bug Validation if Bug message is not empty")
