@@ -21,7 +21,6 @@ public class BugController {
     public ResponseEntity<?> newBug(@RequestBody NewBugRequest newBugRequest) {
         log.warn("New incoming Bug request...");
         CustomAPIResponse customAPIResponse = bugService.newBugReport(newBugRequest);
-
-        if (customAPIResponse.msg().)
+        return new ResponseEntity<>(customAPIResponse.msg(), customAPIResponse.httpStatus());
     }
 }
