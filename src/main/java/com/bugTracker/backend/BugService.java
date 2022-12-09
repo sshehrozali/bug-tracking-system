@@ -21,6 +21,7 @@ public class BugService {
             log.warn("Bug: length equals to 1");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
+                    .httpStatus(HttpStatus.NOT_ACCEPTABLE)
                     .build();
             return customAPIResponse;
         }
@@ -29,6 +30,7 @@ public class BugService {
             log.warn("Bug: Empty");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.EMPTY_BUG_MESSAGE))
+                    .httpStatus(HttpStatus.BAD_REQUEST)
                     .build();
             return customAPIResponse;
         }
@@ -43,6 +45,7 @@ public class BugService {
             log.warn("Bug validation: Failed");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
+                    .httpStatus(HttpStatus.NOT_ACCEPTABLE)
                     .build();
             return customAPIResponse;
         }
@@ -52,6 +55,7 @@ public class BugService {
             log.warn("Bug duplicate: Marked");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.DUPLICATE_BUG_MESSAGE))
+                    .httpStatus(HttpStatus.ALREADY_REPORTED)
                     .build();
             return customAPIResponse;
         }
@@ -59,6 +63,7 @@ public class BugService {
         if (newBugRequest.details().isEmpty() || newBugRequest.details().isBlank()) {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.DETAILS_NOT_PROVIDED))
+                    .httpStatus(HttpStatus.NO_CONTENT)
                     .build();
             return customAPIResponse;
         }
@@ -66,6 +71,11 @@ public class BugService {
         bugRepository.save(bug);
         log.info("Bug: Confirmed successfully");
 
-        return new CustomAPIResponse("Bug Reported");
+        CustomAPIResponse customAPIResponse = new CustomAPIResponse().builder()
+                .msg("Bug Reported successfully")
+                .httpStatus(HttpStatus.OK)
+                .build();
+
+        return customAPIResponse;
     }
 }
