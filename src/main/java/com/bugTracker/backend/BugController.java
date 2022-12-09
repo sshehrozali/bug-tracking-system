@@ -18,6 +18,7 @@ public class BugController {
     @PostMapping("/new/bug")
     public ResponseEntity<?> newBug(@RequestBody NewBugRequest newBugRequest) {
         log.warn("New incoming Bug request...");
-        return bugService.newBugReport(newBugRequest);
+        CustomAPIResponse customAPIResponse = bugService.newBugReport(newBugRequest);
+
     }
 }
