@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class BugController {
     private final BugService bugService;
-
+    private final ResponseMessageService responseMessageService;
 
     @PostMapping("/new/bug")
     public ResponseEntity<?> newBug(@RequestBody NewBugRequest newBugRequest) {
