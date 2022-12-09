@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Slf4j
 public class BugController {
-    private BugService bugService;
+    private final BugService bugService;
+
 
     @PostMapping("/new/bug")
     public ResponseEntity<?> newBug(@RequestBody NewBugRequest newBugRequest) {
         log.warn("New incoming Bug request...");
         CustomAPIResponse customAPIResponse = bugService.newBugReport(newBugRequest);
 
+        if (customAPIResponse.msg().)
     }
 }
