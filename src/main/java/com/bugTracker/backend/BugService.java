@@ -70,12 +70,6 @@ public class BugService {
 
         bugRepository.save(bug);
         log.info("Bug: Confirmed successfully");
-
-        CustomAPIResponse customAPIResponse = new CustomAPIResponse().builder()
-                .msg("Bug Reported successfully")
-                .httpStatus(HttpStatus.OK)
-                .build();
-
-        return customAPIResponse;
+        return new CustomAPIResponse("Bug reported successfully.", HttpStatus.OK);
     }
 }
