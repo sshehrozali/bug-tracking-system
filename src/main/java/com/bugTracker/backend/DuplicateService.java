@@ -13,14 +13,14 @@ public class DuplicateService {
     private BugRepository bugRepository;
     private DuplicateRepository duplicateRepository;
     public Boolean isBugDuplicate(Bug bug) {
-        boolean bugExists = bugRepository.existsById(bug.getId());
+        boolean bugExists = bugRepository.existsByBugMessage(bug.getBugMessage());
         if (bugExists) {
             Duplicate duplicate = Duplicate.builder()
                     .markedAt(LocalDateTime.now())
                     .bug(bug)
                     .build();
-            Duplicate duplicateFlushed = duplicateRepository.saveAndFlush(duplicate);
-            log.info("New duplicate marked: " + duplicateFlushed.getId());
+//            Duplicate duplicateFlushed = duplicateRepository.saveAndFlush(duplicate);
+//            log.info("New duplicate marked: " + duplicateFlushed.getId());
             return true;    // Bug already found
         }
 
