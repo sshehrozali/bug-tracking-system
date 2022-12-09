@@ -2,10 +2,13 @@ package com.bugTracker.backend;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 @Repository
 public interface BugRepository extends JpaRepository<Bug, Integer> {
     @Query
-    boolean existsByBugMessage(String bugMessage);
+    Optional<Bug> findByBugMessageLike(@NonNull String bugMessage);
 }
