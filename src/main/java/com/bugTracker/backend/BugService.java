@@ -11,19 +11,18 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class BugService {
-
     private final BugRepository bugRepository;
     private final QuestionSupportService questionSupportService;
     private final DuplicateService duplicateService;
     private final ResponseMessageService responseMessageService;
 
-    public ResponseEntity<?> newBugReport(NewBugRequest newBugRequest) {
+    public CustomAPIResponse newBugReport(NewBugRequest newBugRequest) {
         if (newBugRequest.msg().length() == 1) {
             log.warn("Bug: length equals to 1");
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
                     .build();
-            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+            return customAPIResponse;
         }
 
         if (newBugRequest.msg().isBlank() || newBugRequest.msg().isEmpty()) {
@@ -31,7 +30,7 @@ public class BugService {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.EMPTY_BUG_MESSAGE))
                     .build();
-            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+            return customAPIResponse;
         }
 
         Bug bug = Bug.builder()
@@ -45,7 +44,7 @@ public class BugService {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.INVALID_BUG_MESSAGE))
                     .build();
-            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+            return customAPIResponse;
         }
 
         Boolean isDuplicate = duplicateService.isBugDuplicate(bug);
@@ -54,19 +53,19 @@ public class BugService {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.DUPLICATE_BUG_MESSAGE))
                     .build();
-            return new ResponseEntity<>(customAPIResponse, HttpStatus.CONFLICT);
+            return customAPIResponse;
         }
 
         if (newBugRequest.details().isEmpty() || newBugRequest.details().isBlank()) {
             CustomAPIResponse customAPIResponse = CustomAPIResponse.builder()
                     .msg(responseMessageService.getMessage(MessageCode.DETAILS_NOT_PROVIDED))
                     .build();
-            return new ResponseEntity<>(customAPIResponse, HttpStatus.NOT_ACCEPTABLE);
+            return customAPIResponse;
         }
 
         bugRepository.save(bug);
         log.info("Bug: Confirmed successfully");
 
-        return new ResponseEntity<>("Bug reported.", HttpStatus.OK);
+        return new CustomAPIResponse("Bug Reported");
     }
 }
