@@ -1,4 +1,4 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.service;
 
 import org.springframework.stereotype.Service;
 

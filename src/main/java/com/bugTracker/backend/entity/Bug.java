@@ -1,4 +1,4 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,5 +1,6 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.entity;
 
+import com.bugTracker.backend.entity.Bug;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

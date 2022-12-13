@@ -1,10 +1,13 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.service;
 
-import lombok.AllArgsConstructor;
+import com.bugTracker.backend.entity.Bug;
+import com.bugTracker.backend.misc.MessageCode;
+import com.bugTracker.backend.repository.BugRepository;
+import com.bugTracker.backend.request.NewBugRequest;
+import com.bugTracker.backend.response.CustomAPIResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

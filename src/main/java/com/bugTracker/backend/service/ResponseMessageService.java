@@ -1,7 +1,6 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.service;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import com.bugTracker.backend.misc.MessageCode;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;

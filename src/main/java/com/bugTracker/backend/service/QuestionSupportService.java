@@ -1,5 +1,6 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.service;
 
+import com.bugTracker.backend.entity.Bug;
 import org.springframework.stereotype.Service;
 
 @Service

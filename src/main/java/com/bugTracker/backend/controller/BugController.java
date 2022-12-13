@@ -1,6 +1,9 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.controller;
 
-import lombok.AllArgsConstructor;
+import com.bugTracker.backend.service.BugService;
+import com.bugTracker.backend.response.CustomAPIResponse;
+import com.bugTracker.backend.request.NewBugRequest;
+import com.bugTracker.backend.service.ResponseMessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

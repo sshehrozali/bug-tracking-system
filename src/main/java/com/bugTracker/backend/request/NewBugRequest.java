@@ -1,4 +1,4 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.request;
 
 public record NewBugRequest(
         String msg,

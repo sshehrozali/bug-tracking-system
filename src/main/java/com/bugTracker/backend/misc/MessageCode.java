@@ -1,4 +1,4 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.misc;
 
 public enum MessageCode {
     INVALID_BUG_MESSAGE,

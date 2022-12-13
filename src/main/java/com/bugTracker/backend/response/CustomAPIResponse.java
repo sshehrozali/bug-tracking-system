@@ -1,4 +1,4 @@
-package com.bugTracker.backend;
+package com.bugTracker.backend.response;
 
 import lombok.Builder;
 import lombok.Data;
